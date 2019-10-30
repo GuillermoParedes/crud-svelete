@@ -1,0 +1,3 @@
+# .nowignore 
+node_modules
+__sapper__/dev
