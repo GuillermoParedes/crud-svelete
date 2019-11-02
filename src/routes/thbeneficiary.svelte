@@ -5,7 +5,7 @@
 
   let thBeneficiaries = [];
   let thBeneficary = {};
-  
+
   let buttonSaveIsLoading = false;
   $: buttonSaveClass =
     buttonSaveIsLoading === true
@@ -21,7 +21,7 @@
 
   async function getThBeneficiaries() {
     // a simple use of "fetch"
-    const result = await fetch("http://192.168.88.111:3105/api/Tp35Beneficiaries");
+    const result = await fetch("http://localhost:3105/api/Tp35Beneficiaries");
     if (result.ok) return result.json();
 
     throw new Error(
@@ -56,7 +56,8 @@
       firstName: '',
       lastName: '',
       status: '',
-      username: ''
+      username: '',
+      updatedAt: Date.now()
     }
     openModal()
   }
@@ -70,7 +71,7 @@
         url: thBeneficary.id ? `/Tp35Beneficiaries/${thBeneficary.id}` : "/Tp35Beneficiaries",
         data: thBeneficary
       });
-      
+
       thBeneficiaries = getThBeneficiaries();
       closeModal();
     } catch (error) {
