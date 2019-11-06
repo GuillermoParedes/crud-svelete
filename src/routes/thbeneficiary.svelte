@@ -69,7 +69,10 @@
       let result = await http({
         method: thBeneficary.id ? "put" : "post",
         url: thBeneficary.id ? `/Tp35Beneficiaries/${thBeneficary.id}` : "/Tp35Beneficiaries",
-        data: thBeneficary
+        data: {
+          ...thBeneficary,
+          updatedAt: Date.now()
+        }
       });
 
       thBeneficiaries = getThBeneficiaries();
