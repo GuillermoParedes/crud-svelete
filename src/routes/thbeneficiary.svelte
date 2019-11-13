@@ -2,6 +2,8 @@
   import Card from "../components/Card.svelte";
   import { onMount } from "svelte";
   import http from "../http";
+  const moment = require('moment');
+
 
   let thBeneficiaries = [];
   let thBeneficary = {};
@@ -57,7 +59,7 @@
       lastName: '',
       status: '',
       username: '',
-      updatedAt: Date.now()
+      updatedAt: ''
     }
     openModal()
   }
@@ -66,12 +68,14 @@
     try {
       buttonSaveIsLoading = true;
       console.log('thBeneficary=========+++>', thBeneficary);
+
       let result = await http({
         method: thBeneficary.id ? "put" : "post",
         url: thBeneficary.id ? `/Tp35Beneficiaries/${thBeneficary.id}` : "/Tp35Beneficiaries",
         data: {
           ...thBeneficary,
-          updatedAt: Date.now()
+          updatedAt: new Date(),
+          origin: 1
         }
       });
 
